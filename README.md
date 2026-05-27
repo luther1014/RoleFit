@@ -1,4 +1,4 @@
-# JobFit Analyzer
+# RoleFit Analyzer
 
 A full-stack learning project for practicing **Python backend APIs, React frontend development, SQL databases, Redis queues, worker processes, Docker Compose, authentication, testing, and cloud-ready architecture**.
 
@@ -8,7 +8,7 @@ This README is the **source of truth** for the project. Use it with Codex or any
 
 ## 1. Project Summary
 
-**JobFit Analyzer** helps users compare their CV/resume against a job description.
+**rolefit Analyzer** helps users compare their CV/resume against a job description.
 
 A user can:
 
@@ -219,7 +219,7 @@ The first version should be small but complete.
 ## 8. Suggested Folder Structure
 
 ```text
-jobfit-analyzer/
+rolefit-analyzer/
 │
 ├── backend/
 │   ├── app/
@@ -607,7 +607,7 @@ This teaches how frontend apps handle background jobs.
 Create `.env.example`:
 
 ```env
-DATABASE_URL=postgresql+psycopg2://postgres:postgres@postgres:5432/jobfit
+DATABASE_URL=postgresql+psycopg2://postgres:postgres@postgres:5432/rolefit
 REDIS_URL=redis://redis:6379
 JWT_SECRET_KEY=change_me
 JWT_ALGORITHM=HS256
@@ -628,7 +628,7 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/jobfit
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/rolefit
       REDIS_URL: redis://redis:6379
       JWT_SECRET_KEY: dev_secret
       JWT_ALGORITHM: HS256
@@ -643,7 +643,7 @@ services:
     build: ./backend
     command: rq worker analysis_jobs --url redis://redis:6379
     environment:
-      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/jobfit
+      DATABASE_URL: postgresql+psycopg2://postgres:postgres@postgres:5432/rolefit
       REDIS_URL: redis://redis:6379
       JWT_SECRET_KEY: dev_secret
       JWT_ALGORITHM: HS256
@@ -668,7 +668,7 @@ services:
   postgres:
     image: postgres:16
     environment:
-      POSTGRES_DB: jobfit
+      POSTGRES_DB: rolefit
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
@@ -936,7 +936,7 @@ Only add these after the MVP works.
 A good short explanation:
 
 ```text
-JobFit Analyzer is a full-stack application that compares a user's CV with a job description. I built it to practice production-style backend architecture. The frontend is built with React and TypeScript. The backend uses FastAPI and PostgreSQL. When a user creates an analysis, the API saves a job with pending status and pushes it into a Redis queue. A separate worker process consumes the job, analyzes the CV and job description, saves the result in PostgreSQL, and updates the job status. The whole system runs with Docker Compose using separate containers for frontend, backend, worker, PostgreSQL, and Redis.
+rolefit Analyzer is a full-stack application that compares a user's CV with a job description. I built it to practice production-style backend architecture. The frontend is built with React and TypeScript. The backend uses FastAPI and PostgreSQL. When a user creates an analysis, the API saves a job with pending status and pushes it into a Redis queue. A separate worker process consumes the job, analyzes the CV and job description, saves the result in PostgreSQL, and updates the job status. The whole system runs with Docker Compose using separate containers for frontend, backend, worker, PostgreSQL, and Redis.
 ```
 
 ---
